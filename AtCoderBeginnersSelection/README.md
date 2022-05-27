@@ -2,4 +2,6 @@ AtCoderBeginnersSelectionを個人で解いたものになります
 
 prototype_Interactive_Sorting.pyについてはまだACではないので今後解決する予定です。
 
+それ以外はACです
+
 https://atcoder.jp/contests/abs/tasks
