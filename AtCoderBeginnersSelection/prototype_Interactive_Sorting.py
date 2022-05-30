@@ -1,7 +1,6 @@
 import sys
 
 
-
 def check(num_1, num_2):
     print('?', num_1, num_2, flush=True)
     s = input()
@@ -43,6 +42,7 @@ def merge(left_list,right_list):
     return result
 
 def merge_sort_2(data):
+    #step2まで
     list1 = []
     save_data = data.pop()
     left_list = data[:2]
@@ -53,47 +53,67 @@ def merge_sort_2(data):
     if check(left_list[0],right_list[0]):#left_list[0]<right_list[0])
         list1.append(left_list[0])
         list1.extend(right_list)
-        save_data_2 = left_list[0]
         save_data_3 = left_list[1]
-
-        if check(list1[1],save_data): #list1[1]<save_data
-            if check(list1[2],save_data):#list1[2]<save_data
-                list1.append(save_data)
-            else:#list1[2]>save_data
-                list1.insert(2,save_data)
-        else:
-            list1.insert(0,save_data)#list1[1]>save_data
-
+    
     else:
         list1.append(right_list[0])
         list1.extend(left_list)
-        save_data_2 = right_list[0]
         save_data_3 = right_list[1]
+    
+    
 
-        if check(list1[1],save_data): #list1[1]<save_data
-            if check(list1[2],save_data):#list1[2]<save_data
-                list1.append(save_data)
-            else:#list1[2]>save_data
-                list1.insert(2,save_data)
-        else:
-            list1.insert(0,save_data)#list1[1]>save_data
+    if check(list1[1],save_data): #c<e
+        if check(list1[2],save_data):#d<e acde
+            list1.append(save_data)
+            if check(list1[2],save_data_3):#d<b
+                if check(list1[3],save_data_3):#e<b
+                    list1.append(save_data_3)
+                else:
+                    list1.insert(3,save_data_3)
+            else:#d>b
+                if check(list1[1],save_data_3):#c<b
+                    list1.insert(2,save_data_3)
+                else:
+                    list1.insert(1,save_data_3)
+    
+    
+        else:#list1[2]>save_data 
+            list1.insert(2,save_data)#aced
+            if check(list1[3],save_data_3):#d<b
+                list1.append(save_data_3)
+            else:#d>b
+                if check(list1[2],save_data_3):#e<b
+                    list1.insert(3,save_data_3)
+                else:#e>b
+                    if check(list1[1],save_data_3):#c<b
+                        list1.insert(2,save_data_3)
+                    else:#c>b
+                        list1.insert(1,save_data_3)
 
-    num_4 = list1.index(save_data_2)
-
-    if check(list1[2],save_data_3):#list1[2] < save_data_3
-        if check(list1[3],save_data_3):
-            list1.append(save_data_3)
-        else:
-            list1.insert(3,save_data_3)
-    else:                           #list1[2] > save_data_3
-        if num_4 == 1:
-            list1.insert(1,save_data_3)
-        else:
-            if check(list1[1],save_data_3):#list1[1] < save_data_3
-                list1.insert(2,save_data_3)
+    
+    else:#c>e
+        if check(list1[0],save_data): # a<e acd
+            if check(save_data_3,list1[1]): #b<c
+                if check(save_data_3,save_data):#b<e
+                    list1.insert(1,save_data)
+                    list1.insert(1,save_data_3)
+                else:#b>e
+                    list1.insert(1,save_data_3)
+                    list1.insert(1,save_data)
+            else: #c<b
+                if check(save_data,list1[2]):#b<d
+                    list1.insert(2,save_data)
+                else:
+                    list1.append(save_data_3)
+        else:#e<a eacd
+            list1.insert(0,save_data)
+            if check(list1[2],save_data_3):#c<b
+                if check(list1[3],save_data_3):#d<b
+                    list1.append(save_data_3)
+                else:
+                    list1.insert(3,save_data_3)
             else:
-                list1.insert(1,save_data_3)
-
+                list1.insert(2,save_data_3)
 
     return list1
       
