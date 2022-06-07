@@ -21,4 +21,4 @@ for i, j, k in itertools.combinations(nums, 3):
 
 ## Poem_Online_Judge.py
 
-模範解答[模範解答](https://atcoder.jp/contests/abc251/editorial/3968)のコードになります
+[模範解答](https://atcoder.jp/contests/abc251/editorial/3968)のコードになります
